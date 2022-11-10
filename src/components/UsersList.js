@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import {Container, Grid, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import UserItem from "./UserItem";
 
 const UsersList = () => {
 
@@ -23,13 +24,34 @@ const UsersList = () => {
 
     }, [])
 
-    return (<Container maxWidth="md">
-            <Grid container spacing={4}>
-                {users.map((card) => (
-                    <Grid item  xs={12}  xl={6}>
-                        e
-                    </Grid>
-                ))}
+    return (<Container maxWidth="lg">
+            <Grid
+                container
+                spacing={8}
+                direction="row"
+                justifyContent="center"
+                alignItems="flex-start">
+
+                {
+                    users.map((card) =>
+
+                    (<Grid
+                        item
+                        xs={12} xl={6}>
+                        <UserItem
+                            userImg ={card.picture.large}
+                            userTitle = {card.name.title}
+                            userFirstName = {card.name.first}
+                            userLastName = {card.name.last}
+                            userAge = {card.dob.age}
+                            userEmail = {card.email}
+                            userId = {card.id.value}
+
+
+
+                        />
+                    </Grid>))
+                }
 
             </Grid>
         </Container>
