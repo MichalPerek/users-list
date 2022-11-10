@@ -13,8 +13,9 @@ const UsersList = () => {
         fetch("https://randomuser.me/api/?results=20")
             .then((response) => response.json())
             .then((data) => {
-            console.log("data ", data)
-        })
+                console.log("data ", data.results)
+                setUsers(data.results)
+            })
             .catch((error) => {
                 console.error("Error: ", error)
             })
