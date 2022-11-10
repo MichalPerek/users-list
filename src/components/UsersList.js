@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Box from "@mui/material/Box";
-import {Container, Stack} from "@mui/material";
+import {Container, Grid, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
@@ -24,7 +24,14 @@ const UsersList = () => {
     }, [])
 
     return (<Container maxWidth="md">
+            <Grid container spacing={4}>
+                {users.map((card) => (
+                    <Grid item  xs={12}  xl={6}>
+                        e
+                    </Grid>
+                ))}
 
+            </Grid>
         </Container>
 
     );
