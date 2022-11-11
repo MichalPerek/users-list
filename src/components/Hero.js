@@ -24,16 +24,17 @@ const Hero = () => {
                     Employees list
                 </Typography>
                 <Typography variant="h5" align="center" color="text.secondary" paragraph>
-   This is a list of top employees from your company on this month.
+                    This is a list of your company's employees, decide if you want to keep them, or fire them. Keep in
+                    mind that you have to think of reduced budget for next year!
                 </Typography>
                 <Stack
-                    sx={{ pt: 4 }}
+                    sx={{pt: 4}}
                     direction="row"
                     spacing={2}
                     justifyContent="center"
                 >
-                    <Button variant="contained">Main call to action</Button>
-                    <Button variant="outlined">Secondary action</Button>
+                    <Button variant="contained">Reset all values</Button>
+                    <Button variant="outlined">Submit changes</Button>
                 </Stack>
             </Container>
         </Box>
