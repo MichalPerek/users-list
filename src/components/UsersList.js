@@ -24,7 +24,8 @@ const UsersList = () => {
 
     }, [])
 
-    return (<Container maxWidth="xl">
+    return (<Container maxWidth="xl"
+     >
             <Grid
                 container
                 spacing={4}

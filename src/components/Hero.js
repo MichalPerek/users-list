@@ -28,15 +28,15 @@ const Hero = () => {
                     This is a list of your company's employees, decide if you want to keep them, or fire them. Keep in
                     mind that you have to think of reduced budget for next year!
                 </Typography>
-                <Stack
-                    sx={{pt: 4}}
-                    direction="row"
-                    spacing={2}
-                    justifyContent="center"
-                >
-                    <Button variant="contained">Reset all values</Button>
-                    <Button variant="outlined">Submit changes</Button>
-                </Stack>
+                {/*<Stack*/}
+                {/*    sx={{pt: 4}}*/}
+                {/*    direction="row"*/}
+                {/*    spacing={2}*/}
+                {/*    justifyContent="center"*/}
+                {/*>*/}
+                {/*    <Button variant="contained">Reset all values</Button>*/}
+                {/*    <Button variant="outlined">Submit changes</Button>*/}
+                {/*</Stack>*/}
             </Container>
         </Box>
     );
