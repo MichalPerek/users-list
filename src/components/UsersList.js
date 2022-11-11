@@ -30,14 +30,14 @@ const UsersList = () => {
                 spacing={8}
                 direction="row"
                 justifyContent="center"
-                alignItems="flex-start">
+                alignItems="center">
 
                 {
                     users.map((card) =>
 
                     (<Grid
                         item
-                        xs={12} xl={6}>
+                        xs={12} >
                         <UserItem
                             userImg ={card.picture.large}
                             userTitle = {card.name.title}
