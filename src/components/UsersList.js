@@ -4,8 +4,13 @@ import {Container, Grid, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import UserItem from "./UserItem";
+import {useDispatch, useSelector} from "react-redux";
+import {updateUsers} from "./usersSlice";
+
 
 const UsersList = () => {
+
+    const dispatch = useDispatch();
 
     const [users, setUsers] = useState([])
 
@@ -16,6 +21,8 @@ const UsersList = () => {
             .then((data) => {
                 console.log("data ", data.results)
                 setUsers(data.results)
+                dispatch(updateUsers(data.results))
+
             })
             .catch((error) => {
                 console.error("Error: ", error)
