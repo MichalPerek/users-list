@@ -8,7 +8,7 @@ const Hero = () => {
     return (
         <Box
             sx={{
-                bgcolor: 'background.paper',
+                bgcolor: '#F6F5F4',
                 pt: 8,
                 pb: 6,
             }}
@@ -20,6 +20,7 @@ const Hero = () => {
                     align="center"
                     color="text.primary"
                     gutterBottom
+                    sx={{marginTop: '1rem'}}
                 >
                     Employees list
                 </Typography>
