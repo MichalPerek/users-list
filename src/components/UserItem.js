@@ -31,6 +31,14 @@ const UserItem = (props) => {
     const userSalaryLabel = "Salary: " + Math.floor((Math.random() * 1000 + 200)) + "$"
     const userEvaluation = "Evaluation: " + Math.floor((Math.random() * 100)) + "%"
 
+    const handleExtendButton = () => {
+        console.log("extend")
+    }
+
+    const handleFireButton = () => {
+        console.log("fire")
+    }
+
 
     return (<Container>
 
@@ -179,10 +187,10 @@ const UserItem = (props) => {
                         margin: '1rem'
                     }} label='Available actions:' variant="outlined"/>
 
-                    <Button variant="contained" color="success" sx={{margin: '1rem'}}>
+                    <Button variant="contained" color="success" sx={{margin: '1rem'}} onClick={handleExtendButton}>
                         Extend contract
                     </Button>
-                    <Button variant="contained" color="error" sx={{margin: '1rem'}}>
+                    <Button variant="contained" color="error" sx={{margin: '1rem'}} onClick={handleFireButton}>
                         Fire employee
                     </Button>
                 </Grid>

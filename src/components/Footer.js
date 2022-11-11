@@ -4,6 +4,11 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 const Footer = () => {
+
+    const buttonHandler = () => {
+        console.log("heh")
+    }
+
     return (
         <Stack
             sx={{p: 4}}
@@ -12,8 +17,13 @@ const Footer = () => {
             justifyContent="center"
         >
             <Fab variant="extended"
-            sx={{backgroundColor: '#ACA39A'}}>
-                <AddCircleOutlineIcon sx={{mr: 1}}/>
+                 sx={{backgroundColor: '#ACA39A'}}
+                 onClick={buttonHandler}
+            >
+                <AddCircleOutlineIcon
+                    sx={{m: 1}}
+
+                />
                 Load more
             </Fab>
         </Stack>
