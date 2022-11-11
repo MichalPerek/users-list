@@ -24,10 +24,10 @@ const UsersList = () => {
 
     }, [])
 
-    return (<Container maxWidth="lg">
+    return (<Container maxWidth="xl">
             <Grid
                 container
-                spacing={8}
+                spacing={4}
                 direction="row"
                 justifyContent="center"
                 alignItems="center">
@@ -37,7 +37,8 @@ const UsersList = () => {
 
                     (<Grid
                         item
-                        xs={12} >
+                        xs={12}
+                        md={6}>
                         <UserItem
                             userImg ={card.picture.large}
                             userTitle = {card.name.title}
