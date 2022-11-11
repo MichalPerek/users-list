@@ -12,7 +12,7 @@ const usersSlice = createSlice({
     reducers: {
 
         updateUsers(state, action) {
-            state.users = action.payload
+            state.users = state.users.concat(action.payload)
         }
 
     }

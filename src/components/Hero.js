@@ -19,7 +19,7 @@ const Hero = () => {
                     align="center"
                     color="text.primary"
                     gutterBottom
-                    sx={{marginTop: '1rem'}}
+                    sx={{marginTop: '5rem'}}
                 >
                     Employees list
                 </Typography>

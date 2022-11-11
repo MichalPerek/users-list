@@ -12,7 +12,9 @@ const UsersList = () => {
 
     const dispatch = useDispatch();
 
-    const [users, setUsers] = useState([])
+    // const [users, setUsers] = useState([])
+
+    const users = useSelector((state)=>state.users.users)
 
     useEffect(() => {
 
@@ -20,7 +22,7 @@ const UsersList = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log("data ", data.results)
-                setUsers(data.results)
+                // setUsers(data.results)
                 dispatch(updateUsers(data.results))
 
             })
@@ -41,7 +43,7 @@ const UsersList = () => {
                 alignItems="center">
 
                 {
-                    users.map((card) =>
+                    users && users.map((card) =>
 
                     (<Grid
                         item
