@@ -65,15 +65,16 @@ const UserItem = (props) => {
     const userImg = props.userData.picture.large ?
         props.userData.picture.large :
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDXECBv76wa78obNrJNqayP3o7cy4RaZNg_l_YuhSzP6qoWuHr6BTtn8JgNuHFVmSaf4&usqp=CAU"
-    const userId = props.userData.userId
 
+    const userId = props.userData.userId
     const userLabelName = props.userData.name.title + " " + props.userData.name.first + " " + props.userData.name.last;
     const userGradeLabel = "Grade: " + props.userData.grade
     const userAttendanceLabel = "Attendance: " + props.userData.attendance + "%"
     const userSalaryLabel = "Salary: " + props.userData.salary + "$"
-    const userEvaluationLabel = "Evaluation: " + props.userData.salary + "%"
+    const userEvaluationLabel = "Evaluation: " + props.userData.evaluation + "%"
     const userLabelAge = "Age: " + userAge
     const userLabelId = "ID: " + userId
+
 
 
     return (<Container>
