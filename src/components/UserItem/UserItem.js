@@ -1,17 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState} from 'react';
 import {
     Card,
     Container,
     Grid,
 } from "@mui/material";
-import {useDispatch, useSelector} from "react-redux";
-import {fireUser, keepUser, setFiredUser, updateFilteredUsers} from "../usersSlice";
+import {useDispatch} from "react-redux";
+import {fireUser, keepUser, updateFilteredUsers} from "../usersSlice";
 import UserBio from "./UserBio";
 import UserPersonalData from "./UserPersonalData";
 import UserWorkData from "./UserWorkData";
 import UserActions from "./UserActions";
 import UserItemBackdrop from "./UserItemBackdrop";
-import Typography from "@mui/material/Typography";
 import UserOverlayFired from "./UserOverlayFired";
 import UserOverlayKeep from "./UserOverlayKeep";
 
@@ -20,7 +19,6 @@ const UserItem = (props) => {
 
     const [backdropOpen, setBackdropOpen] = useState(false);
     const [backdropConfig, setBackdropConfig] = useState({})
-    const [overlay, setOverlay] = useState(null)
 
     const dispatch = useDispatch()
 

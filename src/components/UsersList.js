@@ -42,7 +42,8 @@ const UsersList = () => {
                         (<Grid
                             item
                             xs={12}
-                            md={6}>
+                            md={6}
+                            key={card.userId}>
                             <UserItem
                                 userData={card}
                                 key={card.userId}

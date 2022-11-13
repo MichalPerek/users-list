@@ -2,7 +2,6 @@ import React from 'react';
 import {Avatar, Backdrop, Card, Container, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import {useState} from 'react';
 
 const UserItemBackdrop = (props) => {
 
@@ -10,8 +9,6 @@ const UserItemBackdrop = (props) => {
     const userLabelName = props.userLabelName
     const userImg = props.userImg
     const handleCloseBackdrop = props.handleCloseBackdrop
-    const fireBtnHandler = props.handleFireButtonBackdrop
-    const message = props.backdropMsg
     const backdropConfig = props.backdropConfig
 
     return (
