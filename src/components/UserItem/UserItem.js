@@ -27,6 +27,7 @@ import {removeFiredUser, setFiredUser} from "../usersSlice";
 import UserBio from "./UserBio";
 import UserPersonalData from "./UserPersonalData";
 import UserWorkData from "./UserWorkData";
+import UserActions from "./UserActions";
 
 
 const UserItem = (props) => {
@@ -105,22 +106,8 @@ const UserItem = (props) => {
                               userEvaluationLabel={userEvaluationLabel} userSalaryLabel={userSalaryLabel}/>
 
 
-                <Grid
-                    item
-                    xs={12}
-                >
-                    <Chip sx={{
-                        width: '80%',
-                        margin: '1rem'
-                    }} label='Available actions:' variant="outlined"/>
+                <UserActions extendBtnHanlder={handleExtendButtonCard} fireBtnHandler={handleFireButtonCard}  />
 
-                    <Button variant="contained" color="success" sx={{margin: '1rem'}} onClick={handleExtendButtonCard}>
-                        Extend contract
-                    </Button>
-                    <Button variant="contained" color="error" sx={{margin: '1rem'}} onClick={handleFireButtonCard}>
-                        Fire employee
-                    </Button>
-                </Grid>
 
             </Grid>
 
