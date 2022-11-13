@@ -23,25 +23,26 @@ import CreditScoreIcon from '@mui/icons-material/CreditScore';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import Button from "@mui/material/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {removeFiredUser, setFiredUser} from "./usersSlice";
+import {removeFiredUser, setFiredUser} from "../usersSlice";
+import UserBio from "./UserBio";
 
 
 const UserItem = (props) => {
 
     const [open, setOpen] = useState(false);
-    const [toggleMode,setToggleMode] = useState('')
-    const [backdropMsg,setBackdropMsg] = useState('')
+    const [toggleMode, setToggleMode] = useState('')
+    const [backdropMsg, setBackdropMsg] = useState('')
 
 
     const handleToggle = (toggleType) => {
         setOpen(!open);
         setToggleMode(toggleType)
 
-        if(toggleMode && toggleMode === 'fire') {
+        if (toggleMode && toggleMode === 'fire') {
             setBackdropMsg("Do you really want to fire ")
 
         }
-        if(toggleMode && toggleMode === 'extend') {
+        if (toggleMode && toggleMode === 'extend') {
             setBackdropMsg("Extend contract for ")
 
         }
@@ -71,7 +72,7 @@ const UserItem = (props) => {
 
     const userAge = props.userData.dob.age
     const userEmail = props.userData.email
-    const userImg = props.userData.picture.large? props.userData.picture.large : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDXECBv76wa78obNrJNqayP3o7cy4RaZNg_l_YuhSzP6qoWuHr6BTtn8JgNuHFVmSaf4&usqp=CAU"
+    const userImg = props.userData.picture.large ? props.userData.picture.large : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDXECBv76wa78obNrJNqayP3o7cy4RaZNg_l_YuhSzP6qoWuHr6BTtn8JgNuHFVmSaf4&usqp=CAU"
     const userId = props.userData.userId
 
     const userLabelName = props.userData.name.title + " " + props.userData.name.first + " " + props.userData.name.last;
@@ -81,8 +82,6 @@ const UserItem = (props) => {
     const userEvaluationLabel = "Evaluation: " + props.userData.salary + "%"
     const userLabelAge = "Age: " + userAge
     const userLabelId = "ID: " + userId
-
-
 
 
     return (<Container>
@@ -96,41 +95,41 @@ const UserItem = (props) => {
                 justifyContent="center"
                 alignItems="flex-start">
 
+                <UserBio userLabelName = {userLabelName} userImg={userImg} />
+                {/*<Grid*/}
+                {/*    item*/}
+                {/*    md={12} xs={12}*/}
+                {/*    sx={{*/}
+                {/*        display: 'flex',*/}
+                {/*        flexDirection: 'row',*/}
+                {/*        justifyContent: 'center',*/}
+                {/*        alignItems: 'center',*/}
+                {/*        backgroundColor: 'whitesmoke',*/}
+                {/*        borderBottom: '1px solid black'*/}
+                {/*    }}>*/}
 
-                <Grid
-                    item
-                    md={12} xs={12}
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        backgroundColor: 'whitesmoke',
-                        borderBottom: '1px solid black'
-                    }}>
+                {/*    <Avatar alt={userLabelName} src={userImg}*/}
+                {/*            sx={{*/}
+                {/*                width: '100px',*/}
+                {/*                height: '100px',*/}
+                {/*                border: 'solid 1px black',*/}
+                {/*                margin: '1rem'*/}
+                {/*            }}/>*/}
+                {/*    <Typography*/}
+                {/*        component="h1"*/}
+                {/*        variant="h4"*/}
+                {/*        align="center"*/}
+                {/*        color="text.primary"*/}
+                {/*        sx={{*/}
+                {/*            margin: '1rem'*/}
+                {/*        }}*/}
 
-                    <Avatar alt={userLabelName} src={userImg}
-                            sx={{
-                                width: '100px',
-                                height: '100px',
-                                border: 'solid 1px black',
-                                margin: '1rem'
-                            }}/>
-                    <Typography
-                        component="h1"
-                        variant="h4"
-                        align="center"
-                        color="text.primary"
-                        sx={{
-                            margin: '1rem'
-                        }}
-
-                    >
-                        {userLabelName}
-                    </Typography>
+                {/*    >*/}
+                {/*        {userLabelName}*/}
+                {/*    </Typography>*/}
 
 
-                </Grid>
+                {/*</Grid>*/}
 
                 <Grid
                     item

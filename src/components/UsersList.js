@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import {Container, Grid, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import UserItem from "./UserItem";
+import UserItem from "./UserItem/UserItem";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUsers,updateFilteredUsers} from "./usersSlice";
 
