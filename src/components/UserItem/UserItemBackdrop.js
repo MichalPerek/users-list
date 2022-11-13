@@ -11,6 +11,8 @@ const UserItemBackdrop = (props) => {
     const userImg = props.userImg
     const handleCloseBackdrop = props.handleCloseBackdrop
     const fireBtnHandler = props.handleFireButtonBackdrop
+    const message = props.backdropMsg
+    const backdropConfig = props.backdropConfig
 
     return (
         <Backdrop
@@ -32,7 +34,7 @@ const UserItemBackdrop = (props) => {
                         }}
 
                     >
-                        <b>{userLabelName}</b> ?
+                        {backdropConfig.backdropMsg} <b>{userLabelName}</b> ?
                     </Typography>
 
                     <Stack
@@ -59,17 +61,20 @@ const UserItemBackdrop = (props) => {
                         >
                             <Button
                                 variant="contained"
-                                color="error"
-                                onClick={fireBtnHandler}
+                                color={backdropConfig.buttonLeftColor}
+                                onClick={backdropConfig.buttonLeftCallback}
                             >
-                                Fire
+                                {backdropConfig.buttonLeftText}
                             </Button>
 
                             <Button
                                 variant="contained"
-                                color="success"
+                                color={backdropConfig.buttonRightColor}
+                                onClick={backdropConfig.buttonRightCallback}
                             >
-                                Don't fire
+                                {backdropConfig.buttonRightText}
+
+
                             </Button>
 
                         </Stack>

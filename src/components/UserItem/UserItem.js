@@ -5,7 +5,7 @@ import {
     Grid,
 } from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {removeFiredUser, setFiredUser} from "../usersSlice";
+import {fireUser, keepUser, setFiredUser} from "../usersSlice";
 import UserBio from "./UserBio";
 import UserPersonalData from "./UserPersonalData";
 import UserWorkData from "./UserWorkData";
@@ -16,45 +16,49 @@ import UserItemBackdrop from "./UserItemBackdrop";
 const UserItem = (props) => {
 
     const [backdropOpen, setBackdropOpen] = useState(false);
-    const [toggleMode, setToggleMode] = useState('')
-    const [backdropMsg, setBackdropMsg] = useState('')
+    const [backdropConfig, setBackdropConfig] = useState({})
 
+    const dispatch = useDispatch()
 
-    const handleToggle = (toggleType) => {
+    const handleExtendButtonCard = () => {
+
         setBackdropOpen(!backdropOpen);
-        setToggleMode(toggleType)
+        setBackdropConfig({
+            backdropMsg: "Do you really want to extend contract for ",
+            buttonLeftText: 'Extend contract',
+            buttonLeftColor: 'success',
+            buttonLeftCallback: () => handleExtendButtonBackdrop(),
+            buttonRightText: 'Do not extend contract',
+            buttonRightColor: 'error',
+            buttonRightCallback: ''
+        })
+    }
 
-        if (toggleMode && toggleMode === 'fire') {
-            setBackdropMsg("Do you really want to fire ")
+    const handleExtendButtonBackdrop = () => {
+        dispatch(keepUser(userId))
 
-        }
-        if (toggleMode && toggleMode === 'extend') {
-            setBackdropMsg("Extend contract for ")
+    }
 
-        }
-    };
+    const handleFireButtonCard = () => {
+        setBackdropOpen(!backdropOpen);
+        setBackdropConfig({
+            backdropMsg: "Do you really want to fire ",
+            buttonLeftText: 'Fire employee',
+            buttonLeftColor: 'error',
+            buttonLeftCallback: () => handleFireButtonBackdrop(),
+            buttonRightText: 'Do not fire employee',
+            buttonRightColor: 'success',
+            buttonRightCallback: ''
+        })
+    }
+
     const handleCloseBackdrop = () => {
         setBackdropOpen(false);
     };
 
-    const handleExtendButtonCard = () => {
-        handleToggle('extend')
-    }
-
-    const handleFireButtonCard = () => {
-        handleToggle('fire')
-        dispatch(setFiredUser(userId))
-    }
-
     const handleFireButtonBackdrop = () => {
-        dispatch(removeFiredUser(userToBeFired))
-
+        dispatch(fireUser(userId))
     }
-
-    const dispatch = useDispatch()
-
-    const userToBeFired = useSelector((state) => state.users.userToBeFired)
-
 
     const userAge = props.userData.dob.age
     const userEmail = props.userData.email
@@ -115,6 +119,7 @@ const UserItem = (props) => {
                 handleCloseBackdrop={handleCloseBackdrop}
                 fireBtnHandler={handleFireButtonBackdrop}
                 backdropOpen={backdropOpen}
+                backdropConfig={backdropConfig}
             />
 
         </Card>

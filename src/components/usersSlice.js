@@ -4,9 +4,8 @@ import {createSlice, current} from "@reduxjs/toolkit";
 const initialState = {
     users: [],
     usersFiltered: [],
-    firedUsers: [],
+    usersToFire: [],
     usersToKeep: [],
-    userToBeFired: {}
 }
 
 
@@ -36,14 +35,51 @@ const usersSlice = createSlice({
         setFiredUser(state, action) {
             state.userToBeFired = state.users.filter(user => user.userId === action.payload)
         },
-        removeFiredUser(state, action) {
+        fireUser (state, action) {
+            console.log("action payload ", action.payload)
+            const userToBeFired = state.users.filter(user => user.userId === action.payload)
+            userToBeFired[0].status = 'fired'
+            let canAddCurrentUser = true
+            state.usersToFire.forEach((element) => {
+                if (element.userId === action.payload){
+                    canAddCurrentUser = false
+                }
+            })
 
-            state.firedUsers.push(action.payload[0])
-            state.userToBeFired = {}
-            // console.log(action.payload)
-            // console.log("id to delete, ", action.payload[0].userId)
-            // const newUsers = state.users.filter(user => user.userId !== action.payload[0].userId)
-            // state.users = newUsers
+            state.usersToKeep.forEach((element) => {
+                if (element.userId === action.payload){
+                    canAddCurrentUser = false
+                }
+            })
+
+            if(canAddCurrentUser)
+            {
+                state.usersToFire.push(userToBeFired[0])
+            }
+        },
+        keepUser (state, action) {
+            const userToKeep = state.users.filter(user => user.userId === action.payload)
+            userToKeep[0].status = 'keep'
+            let canAddCurrentUser = true
+            state.usersToKeep.forEach((element) => {
+                if (element.userId === action.payload){
+                    canAddCurrentUser = false
+                }
+            })
+
+            state.usersToFire.forEach((element) => {
+                if (element.userId === action.payload){
+                    canAddCurrentUser = false
+                }
+            })
+
+            if(canAddCurrentUser)
+            {
+                state.usersToKeep.push(userToKeep[0])
+            }
+        },
+        setUserToKeep(state, action) {
+            state.usersToKeep = state.users.filter(user => user.userId === action.payload)
         }
 
     }
@@ -53,7 +89,8 @@ const usersSlice = createSlice({
 export const {
     updateUsers,
     setFiredUser,
-    removeFiredUser,
+    fireUser,
+    keepUser,
     updateFilteredUsers
 } = usersSlice.actions
 
