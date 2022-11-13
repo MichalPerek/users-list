@@ -36,7 +36,6 @@ const usersSlice = createSlice({
             state.userToBeFired = state.users.filter(user => user.userId === action.payload)
         },
         fireUser (state, action) {
-            console.log("action payload ", action.payload)
             const userToBeFired = state.users.filter(user => user.userId === action.payload)
             userToBeFired[0].status = 'fired'
             let canAddCurrentUser = true

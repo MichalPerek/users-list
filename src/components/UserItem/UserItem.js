@@ -1,22 +1,26 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Card,
     Container,
     Grid,
 } from "@mui/material";
 import {useDispatch, useSelector} from "react-redux";
-import {fireUser, keepUser, setFiredUser} from "../usersSlice";
+import {fireUser, keepUser, setFiredUser, updateFilteredUsers} from "../usersSlice";
 import UserBio from "./UserBio";
 import UserPersonalData from "./UserPersonalData";
 import UserWorkData from "./UserWorkData";
 import UserActions from "./UserActions";
 import UserItemBackdrop from "./UserItemBackdrop";
+import Typography from "@mui/material/Typography";
+import UserOverlayFired from "./UserOverlayFired";
+import UserOverlayKeep from "./UserOverlayKeep";
 
 
 const UserItem = (props) => {
 
     const [backdropOpen, setBackdropOpen] = useState(false);
     const [backdropConfig, setBackdropConfig] = useState({})
+    const [overlay, setOverlay] = useState(null)
 
     const dispatch = useDispatch()
 
@@ -30,12 +34,13 @@ const UserItem = (props) => {
             buttonLeftCallback: () => handleExtendButtonBackdrop(),
             buttonRightText: 'Do not extend contract',
             buttonRightColor: 'error',
-            buttonRightCallback: ''
+            buttonRightCallback: null
         })
     }
 
     const handleExtendButtonBackdrop = () => {
         dispatch(keepUser(userId))
+        dispatch(updateFilteredUsers())
 
     }
 
@@ -48,17 +53,20 @@ const UserItem = (props) => {
             buttonLeftCallback: () => handleFireButtonBackdrop(),
             buttonRightText: 'Do not fire employee',
             buttonRightColor: 'success',
-            buttonRightCallback: ''
+            buttonRightCallback: null
         })
+    }
+
+    const handleFireButtonBackdrop = () => {
+        dispatch(fireUser(userId))
+        dispatch(updateFilteredUsers())
+
     }
 
     const handleCloseBackdrop = () => {
         setBackdropOpen(false);
     };
 
-    const handleFireButtonBackdrop = () => {
-        dispatch(fireUser(userId))
-    }
 
     const userAge = props.userData.dob.age
     const userEmail = props.userData.email
@@ -67,6 +75,7 @@ const UserItem = (props) => {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDXECBv76wa78obNrJNqayP3o7cy4RaZNg_l_YuhSzP6qoWuHr6BTtn8JgNuHFVmSaf4&usqp=CAU"
 
     const userId = props.userData.userId
+    const userStatus = props.userData.status
     const userLabelName = props.userData.name.title + " " + props.userData.name.first + " " + props.userData.name.last;
     const userGradeLabel = "Grade: " + props.userData.grade
     const userAttendanceLabel = "Attendance: " + props.userData.attendance + "%"
@@ -75,12 +84,11 @@ const UserItem = (props) => {
     const userLabelAge = "Age: " + userAge
     const userLabelId = "ID: " + userId
 
-
-
     return (<Container>
 
-        <Card sx={{border: '1px solid black'}}>
-
+        <Card sx={{border: '1px solid black', position: 'relative'}}>
+            {userStatus && userStatus === 'fired' && <UserOverlayFired/>}
+            {userStatus && userStatus === 'keep' && <UserOverlayKeep/>}
             <Grid
                 container
                 spacing={0}

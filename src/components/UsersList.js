@@ -1,8 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import Box from "@mui/material/Box";
-import {Container, Grid, Stack} from "@mui/material";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import React, {useEffect} from 'react';
+import {Container, Grid} from "@mui/material";
 import UserItem from "./UserItem/UserItem";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUsers,updateFilteredUsers} from "./usersSlice";
@@ -13,6 +10,8 @@ const UsersList = () => {
     const dispatch = useDispatch();
 
     const usersToDisplay = useSelector((state) => state.users.usersFiltered)
+    const users = useSelector((state) => state.users.users)
+
 
 
     useEffect(() => {
@@ -32,10 +31,6 @@ const UsersList = () => {
 
     }, [])
 
-    // useEffect(() => {
-    //     console.log("rerender list")
-    // }, [usersToDisplay])
-
     return (<Container maxWidth="xl"
         >
             <Grid
@@ -54,6 +49,7 @@ const UsersList = () => {
                             md={6}>
                             <UserItem
                                 userData={card}
+                                key = {card.userId}
                             />
                         </Grid>))
                 }
