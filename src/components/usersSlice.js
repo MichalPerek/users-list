@@ -14,20 +14,29 @@ const usersSlice = createSlice({
     reducers: {
 
         updateUsers(state, action) {
-            state.users = state.users.concat(action.payload)
+
+            const newUsers = action.payload
+
+            newUsers.forEach((user) => {
+                user.userId = Math.round(Math.random() * 1000000)
+                user.grade = Math.round((Math.random() * 10 + 1))
+                user.attendance = Math.floor((Math.random() * 100))
+                user.salary = Math.floor((Math.random() * 1000 + 200))
+                user.evaluation = Math.floor((Math.random() * 100))
+                user.status = ""
+            })
+
+            state.users = state.users.concat(newUsers)
         },
         setFiredUser(state, action) {
-            const test = action.payload
-            state.userToBeFired = state.users.filter(user => user.name.last.toLowerCase().includes(action.payload.toLowerCase()))
-
-            console.log("test ", test)
+            state.userToBeFired = state.users.filter(user => user.userId === action.payload)
         },
         removeFiredUser(state, action) {
 
-            const newUsers = state.users.filter(user => user.name.last !== action.payload[0].name.last)
+            console.log(action.payload)
+            console.log("id to delete, ", action.payload[0].userId)
+            const newUsers = state.users.filter(user => user.userId !== action.payload[0].userId)
             state.users = newUsers
-
-
         }
 
     }

@@ -14,7 +14,7 @@ const UsersList = () => {
 
     // const [users, setUsers] = useState([])
 
-    const users = useSelector((state)=>state.users.users)
+    const users = useSelector((state) => state.users.users)
 
 
     useEffect(() => {
@@ -22,10 +22,7 @@ const UsersList = () => {
         fetch("https://randomuser.me/api/?results=20")
             .then((response) => response.json())
             .then((data) => {
-                console.log("data ", data.results)
-                // setUsers(data.results)
                 dispatch(updateUsers(data.results))
-
             })
             .catch((error) => {
                 console.error("Error: ", error)
@@ -34,12 +31,12 @@ const UsersList = () => {
 
     }, [])
 
-    useEffect(()=> {
+    useEffect(() => {
         console.log("rerender list")
-    },[users])
+    }, [users])
 
     return (<Container maxWidth="xl"
-     >
+        >
             <Grid
                 container
                 spacing={4}
@@ -50,23 +47,14 @@ const UsersList = () => {
                 {
                     users && users.map((card) =>
 
-                    (<Grid
-                        item
-                        xs={12}
-                        md={6}>
-                        <UserItem
-                            userImg ={card.picture.large}
-                            userTitle = {card.name.title}
-                            userFirstName = {card.name.first}
-                            userLastName = {card.name.last}
-                            userAge = {card.dob.age}
-                            userEmail = {card.email}
-                            userId = {card.id.value}
-
-
-
-                        />
-                    </Grid>))
+                        (<Grid
+                            item
+                            xs={12}
+                            md={6}>
+                            <UserItem
+                                userData={card}
+                            />
+                        </Grid>))
                 }
 
             </Grid>

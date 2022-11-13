@@ -39,34 +39,29 @@ const UserItem = (props) => {
 
     const dispatch = useDispatch()
 
-    const userToBeFired = useSelector((state)=>state.users.userToBeFired)
+    const userToBeFired = useSelector((state) => state.users.userToBeFired)
 
 
-    const userTitle = props.userTitle ? props.userTitle : "-"
-    const userFirstName = props.userFirstName ? props.userFirstName : "-"
-    const userLastName = props.userLastName ? props.userLastName : "-"
-    const userAge = props.userAge ? props.userAge : "-"
-    const userEmail = props.userEmail ? props.userEmail : "-"
-    const userId = Math.round(Math.random() * 1000000)
-    const userImg = props.userImg ? props.userImg : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDXECBv76wa78obNrJNqayP3o7cy4RaZNg_l_YuhSzP6qoWuHr6BTtn8JgNuHFVmSaf4&usqp=CAU"
+    const userAge = props.userData.dob.age
+    const userEmail = props.userData.email
+    const userImg = props.userData.picture.large? props.userData.picture.large : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdDXECBv76wa78obNrJNqayP3o7cy4RaZNg_l_YuhSzP6qoWuHr6BTtn8JgNuHFVmSaf4&usqp=CAU"
+    const userId = props.userData.userId
 
-    const userLabelName = userTitle + " " + userFirstName + " " + userLastName;
+    const userLabelName = props.userData.name.title + " " + props.userData.name.first + " " + props.userData.name.last;
+    const userGradeLabel = "Grade: " + props.userData.grade
+    const userAttendanceLabel = "Attendance: " + props.userData.attendance + "%"
+    const userSalaryLabel = "Salary: " + props.userData.salary + "$"
+    const userEvaluationLabel = "Evaluation: " + props.userData.salary + "%"
     const userLabelAge = "Age: " + userAge
     const userLabelId = "ID: " + userId
-
-    const userGradeLabel = "Grade: " + Math.round((Math.random() * 10 + 1))
-    const userAttendanceLabel = "Attendance: " + Math.floor((Math.random() * 100)) + "%"
-    const userSalaryLabel = "Salary: " + Math.floor((Math.random() * 1000 + 200)) + "$"
-    const userEvaluation = "Evaluation: " + Math.floor((Math.random() * 100)) + "%"
 
     const handleExtendButtonCard = () => {
         console.log("extend")
     }
 
     const handleFireButtonCard = () => {
-        console.log("fire: ", userLastName)
         handleToggle()
-        dispatch(setFiredUser(userLastName))
+        dispatch(setFiredUser(userId))
     }
 
     const handleFireButtonBackdrop = () => {
@@ -99,7 +94,7 @@ const UserItem = (props) => {
                         borderBottom: '1px solid black'
                     }}>
 
-                    <Avatar alt={userFirstName} src={userImg}
+                    <Avatar alt={userLabelName} src={userImg}
                             sx={{
                                 width: '100px',
                                 height: '100px',
@@ -199,7 +194,7 @@ const UserItem = (props) => {
                                 <CreditScoreIcon/>
                             </ListItemIcon>
                             <ListItemText
-                                primary={userEvaluation}/>
+                                primary={userEvaluationLabel}/>
                         </ListItem>
                         <ListItem>
                             <ListItemIcon>
@@ -216,7 +211,7 @@ const UserItem = (props) => {
                 <Grid
                     item
                     xs={12}
-                    >
+                >
                     <Chip sx={{
                         width: '80%',
                         margin: '1rem'
@@ -233,14 +228,14 @@ const UserItem = (props) => {
             </Grid>
 
             <Backdrop
-                sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+                sx={{color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1}}
                 open={open}
                 onClick={handleClose}
             >
                 <Container
                     maxWidth="sm">
 
-                    <Card >
+                    <Card>
                         <Typography
                             component="h1"
                             variant="h6"
@@ -256,29 +251,30 @@ const UserItem = (props) => {
                         </Typography>
 
                         <Stack
-                            sx={{ p: 2 }}
+                            sx={{p: 2}}
                             direction="column"
                             spacing={1}
                             justifyContent="center"
                             alignItems="center"
                         >
 
-                        <Avatar alt={userFirstName} src={userImg}
-                                sx={{
-                                    width: '100px',
-                                    height: '100px',
-                                    border: 'solid 1px black',
-                                    margin: '1rem'
-                                }}/>
-                        <Stack
-                            sx={{ p: 2 }}
-                            direction="row"
-                            spacing={2}
-                            justifyContent="center"
-                        >
-                            <Button variant="contained" color="error" onClick={handleFireButtonBackdrop}>Fire</Button>
-                            <Button variant="contained" color="success">Don't fire</Button>
-                        </Stack>
+                            <Avatar alt={userLabelName} src={userImg}
+                                    sx={{
+                                        width: '100px',
+                                        height: '100px',
+                                        border: 'solid 1px black',
+                                        margin: '1rem'
+                                    }}/>
+                            <Stack
+                                sx={{p: 2}}
+                                direction="row"
+                                spacing={2}
+                                justifyContent="center"
+                            >
+                                <Button variant="contained" color="error"
+                                        onClick={handleFireButtonBackdrop}>Fire</Button>
+                                <Button variant="contained" color="success">Don't fire</Button>
+                            </Stack>
                         </Stack>
                     </Card>
 
