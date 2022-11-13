@@ -11,40 +11,40 @@ const UserBio = (props) => {
     return (
 
 
-            <Grid
-                item
-                md={12} xs={12}
-                sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    backgroundColor: 'whitesmoke',
-                    borderBottom: '1px solid black'
-                }}>
+        <Grid
+            item
+            md={12} xs={12}
+            sx={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'whitesmoke',
+                borderBottom: '1px solid black'
+            }}>
 
-                <Avatar alt={userLabelName} src={userImg}
-                        sx={{
-                            width: '100px',
-                            height: '100px',
-                            border: 'solid 1px black',
-                            margin: '1rem'
-                        }}/>
-                <Typography
-                    component="h1"
-                    variant="h4"
-                    align="center"
-                    color="text.primary"
+            <Avatar alt={userLabelName} src={userImg}
                     sx={{
+                        width: '100px',
+                        height: '100px',
+                        border: 'solid 1px black',
                         margin: '1rem'
-                    }}
+                    }}/>
+            <Typography
+                component="h1"
+                variant="h4"
+                align="center"
+                color="text.primary"
+                sx={{
+                    margin: '1rem'
+                }}
 
-                >
-                    {userLabelName}
-                </Typography>
+            >
+                {userLabelName}
+            </Typography>
 
 
-            </Grid>
+        </Grid>
 
     );
 };

@@ -35,45 +35,43 @@ const usersSlice = createSlice({
         setFiredUser(state, action) {
             state.userToBeFired = state.users.filter(user => user.userId === action.payload)
         },
-        fireUser (state, action) {
+        fireUser(state, action) {
             const userToBeFired = state.users.filter(user => user.userId === action.payload)
             userToBeFired[0].status = 'fired'
             let canAddCurrentUser = true
             state.usersToFire.forEach((element) => {
-                if (element.userId === action.payload){
+                if (element.userId === action.payload) {
                     canAddCurrentUser = false
                 }
             })
 
             state.usersToKeep.forEach((element) => {
-                if (element.userId === action.payload){
+                if (element.userId === action.payload) {
                     canAddCurrentUser = false
                 }
             })
 
-            if(canAddCurrentUser)
-            {
+            if (canAddCurrentUser) {
                 state.usersToFire.push(userToBeFired[0])
             }
         },
-        keepUser (state, action) {
+        keepUser(state, action) {
             const userToKeep = state.users.filter(user => user.userId === action.payload)
             userToKeep[0].status = 'keep'
             let canAddCurrentUser = true
             state.usersToKeep.forEach((element) => {
-                if (element.userId === action.payload){
+                if (element.userId === action.payload) {
                     canAddCurrentUser = false
                 }
             })
 
             state.usersToFire.forEach((element) => {
-                if (element.userId === action.payload){
+                if (element.userId === action.payload) {
                     canAddCurrentUser = false
                 }
             })
 
-            if(canAddCurrentUser)
-            {
+            if (canAddCurrentUser) {
                 state.usersToKeep.push(userToKeep[0])
             }
         },

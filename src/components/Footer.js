@@ -10,15 +10,15 @@ const Footer = () => {
 
     const buttonHandler = () => {
         fetch("https://randomuser.me/api/?results=20")
-            .then((response)=>response.json())
+            .then((response) => response.json())
             .then((data) => {
                 console.log(data.results)
                 dispatch(updateUsers(data.results))
                 dispatch(updateFilteredUsers())
             })
             .catch((error) => {
-            console.error("Error: ", error)
-        })
+                console.error("Error: ", error)
+            })
 
 
     }

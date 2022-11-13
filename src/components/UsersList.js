@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Container, Grid} from "@mui/material";
 import UserItem from "./UserItem/UserItem";
 import {useDispatch, useSelector} from "react-redux";
-import {updateUsers,updateFilteredUsers} from "./usersSlice";
+import {updateUsers, updateFilteredUsers} from "./usersSlice";
 
 
 const UsersList = () => {
@@ -10,13 +10,11 @@ const UsersList = () => {
     const dispatch = useDispatch();
 
     const usersToDisplay = useSelector((state) => state.users.usersFiltered)
-    const users = useSelector((state) => state.users.users)
-
 
 
     useEffect(() => {
 
-         fetch("https://randomuser.me/api/?results=20")
+        fetch("https://randomuser.me/api/?results=20")
             .then((response) => response.json())
             .then((data) => {
                 dispatch(updateUsers(data.results))
@@ -25,8 +23,6 @@ const UsersList = () => {
             .catch((error) => {
                 console.error("Error: ", error)
             })
-
-
 
 
     }, [])
@@ -49,7 +45,7 @@ const UsersList = () => {
                             md={6}>
                             <UserItem
                                 userData={card}
-                                key = {card.userId}
+                                key={card.userId}
                             />
                         </Grid>))
                 }
