@@ -5,35 +5,36 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import UserItem from "./UserItem";
 import {useDispatch, useSelector} from "react-redux";
-import {updateUsers} from "./usersSlice";
+import {updateUsers,updateFilteredUsers} from "./usersSlice";
 
 
 const UsersList = () => {
 
     const dispatch = useDispatch();
 
-    // const [users, setUsers] = useState([])
-
-    const users = useSelector((state) => state.users.users)
+    const usersToDisplay = useSelector((state) => state.users.usersFiltered)
 
 
     useEffect(() => {
 
-        fetch("https://randomuser.me/api/?results=20")
+         fetch("https://randomuser.me/api/?results=20")
             .then((response) => response.json())
             .then((data) => {
                 dispatch(updateUsers(data.results))
+                dispatch(updateFilteredUsers())
             })
             .catch((error) => {
                 console.error("Error: ", error)
             })
 
 
+
+
     }, [])
 
-    useEffect(() => {
-        console.log("rerender list")
-    }, [users])
+    // useEffect(() => {
+    //     console.log("rerender list")
+    // }, [usersToDisplay])
 
     return (<Container maxWidth="xl"
         >
@@ -45,7 +46,7 @@ const UsersList = () => {
                 alignItems="center">
 
                 {
-                    users && users.map((card) =>
+                    usersToDisplay && usersToDisplay.map((card) =>
 
                         (<Grid
                             item

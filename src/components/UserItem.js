@@ -29,13 +29,40 @@ import {removeFiredUser, setFiredUser} from "./usersSlice";
 const UserItem = (props) => {
 
     const [open, setOpen] = useState(false);
-    const handleToggle = () => {
+    const [toggleMode,setToggleMode] = useState('')
+    const [backdropMsg,setBackdropMsg] = useState('')
+
+
+    const handleToggle = (toggleType) => {
         setOpen(!open);
+        setToggleMode(toggleType)
+
+        if(toggleMode && toggleMode === 'fire') {
+            setBackdropMsg("Do you really want to fire ")
+
+        }
+        if(toggleMode && toggleMode === 'extend') {
+            setBackdropMsg("Extend contract for ")
+
+        }
     };
     const handleClose = () => {
         setOpen(false);
     };
 
+    const handleExtendButtonCard = () => {
+        handleToggle('extend')
+    }
+
+    const handleFireButtonCard = () => {
+        handleToggle('fire')
+        dispatch(setFiredUser(userId))
+    }
+
+    const handleFireButtonBackdrop = () => {
+        dispatch(removeFiredUser(userToBeFired))
+
+    }
 
     const dispatch = useDispatch()
 
@@ -55,19 +82,7 @@ const UserItem = (props) => {
     const userLabelAge = "Age: " + userAge
     const userLabelId = "ID: " + userId
 
-    const handleExtendButtonCard = () => {
-        console.log("extend")
-    }
 
-    const handleFireButtonCard = () => {
-        handleToggle()
-        dispatch(setFiredUser(userId))
-    }
-
-    const handleFireButtonBackdrop = () => {
-        dispatch(removeFiredUser(userToBeFired))
-
-    }
 
 
     return (<Container>
@@ -247,8 +262,7 @@ const UserItem = (props) => {
                             }}
 
                         >
-                            Do you really
-                            want to fire <b>{userLabelName}</b> ?
+                            {backdropMsg} <b>{userLabelName}</b> ?
                         </Typography>
 
                         <Stack

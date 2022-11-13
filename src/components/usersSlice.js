@@ -4,6 +4,8 @@ import {createSlice, current} from "@reduxjs/toolkit";
 const initialState = {
     users: [],
     usersFiltered: [],
+    firedUsers: [],
+    usersToKeep: [],
     userToBeFired: {}
 }
 
@@ -28,15 +30,20 @@ const usersSlice = createSlice({
 
             state.users = state.users.concat(newUsers)
         },
+        updateFilteredUsers(state) {
+            state.usersFiltered = state.users
+        },
         setFiredUser(state, action) {
             state.userToBeFired = state.users.filter(user => user.userId === action.payload)
         },
         removeFiredUser(state, action) {
 
-            console.log(action.payload)
-            console.log("id to delete, ", action.payload[0].userId)
-            const newUsers = state.users.filter(user => user.userId !== action.payload[0].userId)
-            state.users = newUsers
+            state.firedUsers.push(action.payload[0])
+            state.userToBeFired = {}
+            // console.log(action.payload)
+            // console.log("id to delete, ", action.payload[0].userId)
+            // const newUsers = state.users.filter(user => user.userId !== action.payload[0].userId)
+            // state.users = newUsers
         }
 
     }
@@ -46,7 +53,8 @@ const usersSlice = createSlice({
 export const {
     updateUsers,
     setFiredUser,
-    removeFiredUser
+    removeFiredUser,
+    updateFilteredUsers
 } = usersSlice.actions
 
 export default usersSlice.reducer

@@ -2,7 +2,7 @@ import React from 'react';
 import {Fab, Stack} from "@mui/material";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {useDispatch} from "react-redux";
-import {updateUsers} from "./usersSlice";
+import {updateUsers, updateFilteredUsers} from "./usersSlice";
 
 const Footer = () => {
 
@@ -14,6 +14,7 @@ const Footer = () => {
             .then((data) => {
                 console.log(data.results)
                 dispatch(updateUsers(data.results))
+                dispatch(updateFilteredUsers())
             })
             .catch((error) => {
             console.error("Error: ", error)
