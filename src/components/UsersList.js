@@ -1,20 +1,15 @@
-import React, {useEffect, useState} from 'react';
-import Box from "@mui/material/Box";
-import {Container, Grid, Stack} from "@mui/material";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import UserItem from "./UserItem";
+import React, {useEffect} from 'react';
+import {Container, Grid} from "@mui/material";
+import UserItem from "./UserItem/UserItem";
 import {useDispatch, useSelector} from "react-redux";
-import {updateUsers} from "./usersSlice";
+import {updateUsers, updateFilteredUsers} from "./usersSlice";
 
 
 const UsersList = () => {
 
     const dispatch = useDispatch();
 
-    // const [users, setUsers] = useState([])
-
-    const users = useSelector((state) => state.users.users)
+    const usersToDisplay = useSelector((state) => state.users.usersFiltered)
 
 
     useEffect(() => {
@@ -23,6 +18,7 @@ const UsersList = () => {
             .then((response) => response.json())
             .then((data) => {
                 dispatch(updateUsers(data.results))
+                dispatch(updateFilteredUsers())
             })
             .catch((error) => {
                 console.error("Error: ", error)
@@ -30,10 +26,6 @@ const UsersList = () => {
 
 
     }, [])
-
-    useEffect(() => {
-        console.log("rerender list")
-    }, [users])
 
     return (<Container maxWidth="xl"
         >
@@ -45,14 +37,16 @@ const UsersList = () => {
                 alignItems="center">
 
                 {
-                    users && users.map((card) =>
+                    usersToDisplay && usersToDisplay.map((card) =>
 
                         (<Grid
                             item
                             xs={12}
-                            md={6}>
+                            md={6}
+                            key={card.userId}>
                             <UserItem
                                 userData={card}
+                                key={card.userId}
                             />
                         </Grid>))
                 }
