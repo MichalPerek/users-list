@@ -79,7 +79,7 @@ const UserItem = (props) => {
                 spacing={0}
                 direction="row"
                 justifyContent="center"
-                alignItems="center">
+                alignItems="flex-start">
 
 
                 <Grid
@@ -142,7 +142,8 @@ const UserItem = (props) => {
                                 <EmailIcon/>
                             </ListItemIcon>
                             <ListItemText
-                                primary={userEmail}/>
+                                primary={userEmail}
+                                sx={{overflowWrap: 'break-word'}}/>
                         </ListItem>
                         <ListItem>
                             <ListItemIcon>
