@@ -25,6 +25,8 @@ import Button from "@mui/material/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {removeFiredUser, setFiredUser} from "../usersSlice";
 import UserBio from "./UserBio";
+import UserPersonalData from "./UserPersonalData";
+import UserWorkData from "./UserWorkData";
 
 
 const UserItem = (props) => {
@@ -95,133 +97,13 @@ const UserItem = (props) => {
                 justifyContent="center"
                 alignItems="flex-start">
 
-                <UserBio userLabelName = {userLabelName} userImg={userImg} />
-                {/*<Grid*/}
-                {/*    item*/}
-                {/*    md={12} xs={12}*/}
-                {/*    sx={{*/}
-                {/*        display: 'flex',*/}
-                {/*        flexDirection: 'row',*/}
-                {/*        justifyContent: 'center',*/}
-                {/*        alignItems: 'center',*/}
-                {/*        backgroundColor: 'whitesmoke',*/}
-                {/*        borderBottom: '1px solid black'*/}
-                {/*    }}>*/}
+                <UserBio userLabelName={userLabelName} userImg={userImg}/>
+                <UserPersonalData userLabelName={userLabelName} userEmail={userEmail} userLabelId={userLabelId}
+                                  userLabelAge={userLabelAge}/>
 
-                {/*    <Avatar alt={userLabelName} src={userImg}*/}
-                {/*            sx={{*/}
-                {/*                width: '100px',*/}
-                {/*                height: '100px',*/}
-                {/*                border: 'solid 1px black',*/}
-                {/*                margin: '1rem'*/}
-                {/*            }}/>*/}
-                {/*    <Typography*/}
-                {/*        component="h1"*/}
-                {/*        variant="h4"*/}
-                {/*        align="center"*/}
-                {/*        color="text.primary"*/}
-                {/*        sx={{*/}
-                {/*            margin: '1rem'*/}
-                {/*        }}*/}
+                <UserWorkData userGradeLabel={userGradeLabel} userAttendanceLabel={userAttendanceLabel}
+                              userEvaluationLabel={userEvaluationLabel} userSalaryLabel={userSalaryLabel}/>
 
-                {/*    >*/}
-                {/*        {userLabelName}*/}
-                {/*    </Typography>*/}
-
-
-                {/*</Grid>*/}
-
-                <Grid
-                    item
-                    xs={12} md={6}
-                >
-
-                    <List>
-                        <ListItem>
-                            <Chip sx={{
-                                width: '100%',
-                                margin: '1rem'
-                            }} label='Personal Data:' variant="outlined"/>
-
-                        </ListItem>
-                        <ListItem>
-                            <ListItemIcon>
-                                <PersonIcon/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={userLabelName}/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemIcon>
-                                <EmailIcon/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={userEmail}
-                                sx={{overflowWrap: 'break-word'}}/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemIcon>
-                                <Grid3x3Icon/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={userLabelId}/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemIcon>
-                                <HourglassBottomIcon/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={userLabelAge}/>
-                        </ListItem>
-                    </List>
-
-
-                </Grid>
-
-                <Grid
-                    item
-                    xs={12} md={6}>
-
-                    <List>
-                        <ListItem>
-                            <Chip sx={{
-                                width: '100%',
-                                margin: '1rem'
-                            }} label='Work Details:' variant="outlined"/>
-
-                        </ListItem>
-                        <ListItem>
-                            <ListItemIcon>
-                                <GradeIcon/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={userGradeLabel}/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemIcon>
-                                <CalendarMonthIcon/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={userAttendanceLabel}/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemIcon>
-                                <CreditScoreIcon/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={userEvaluationLabel}/>
-                        </ListItem>
-                        <ListItem>
-                            <ListItemIcon>
-                                <MonetizationOnIcon/>
-                            </ListItemIcon>
-                            <ListItemText
-                                primary={userSalaryLabel}/>
-                        </ListItem>
-                    </List>
-
-
-                </Grid>
 
                 <Grid
                     item
