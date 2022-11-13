@@ -1,12 +1,25 @@
 import React from 'react';
 import {Fab, Stack} from "@mui/material";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-
+import {useDispatch} from "react-redux";
+import {updateUsers} from "./usersSlice";
 
 const Footer = () => {
 
+    const dispatch = useDispatch()
+
     const buttonHandler = () => {
-        console.log("heh")
+        fetch("https://randomuser.me/api/?results=20")
+            .then((response)=>response.json())
+            .then((data) => {
+                console.log(data.results)
+                dispatch(updateUsers(data.results))
+            })
+            .catch((error) => {
+            console.error("Error: ", error)
+        })
+
+
     }
 
     return (

@@ -4,10 +4,18 @@ import {Container, Grid, Stack} from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import UserItem from "./UserItem";
+import {useDispatch, useSelector} from "react-redux";
+import {updateUsers} from "./usersSlice";
+
 
 const UsersList = () => {
 
-    const [users, setUsers] = useState([])
+    const dispatch = useDispatch();
+
+    // const [users, setUsers] = useState([])
+
+    const users = useSelector((state)=>state.users.users)
+
 
     useEffect(() => {
 
@@ -15,7 +23,9 @@ const UsersList = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log("data ", data.results)
-                setUsers(data.results)
+                // setUsers(data.results)
+                dispatch(updateUsers(data.results))
+
             })
             .catch((error) => {
                 console.error("Error: ", error)
@@ -23,6 +33,10 @@ const UsersList = () => {
 
 
     }, [])
+
+    useEffect(()=> {
+        console.log("rerender list")
+    },[users])
 
     return (<Container maxWidth="xl"
      >
@@ -34,7 +48,7 @@ const UsersList = () => {
                 alignItems="center">
 
                 {
-                    users.map((card) =>
+                    users && users.map((card) =>
 
                     (<Grid
                         item
