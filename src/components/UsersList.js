@@ -16,6 +16,7 @@ const UsersList = () => {
 
     const users = useSelector((state)=>state.users.users)
 
+
     useEffect(() => {
 
         fetch("https://randomuser.me/api/?results=20")
@@ -32,6 +33,10 @@ const UsersList = () => {
 
 
     }, [])
+
+    useEffect(()=> {
+        console.log("rerender list")
+    },[users])
 
     return (<Container maxWidth="xl"
      >
