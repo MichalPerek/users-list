@@ -15,9 +15,8 @@ https://hr-panel-dev.netlify.app/
 # Tech used:
 
     -React,
+    -Redux,
     -Material-UI
-    -React-redux,
-    -CSS modules
 
 # Preview:
 
