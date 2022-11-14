@@ -1,4 +1,4 @@
-# HR Panel
+# HR Panel / users list
 
 ![image](https://user-images.githubusercontent.com/100487510/201551349-7d2d2721-2209-4e25-ab9a-bfabc1f8b930.png)
 
@@ -10,7 +10,7 @@ to keep them, or fire them! Users are being fetched from https://randomuser.me/ 
 
 # Demo:
 
-TBD
+https://hr-panel-dev.netlify.app/
 
 # Tech used:
 
