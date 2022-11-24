@@ -5,7 +5,7 @@ import {
     Grid,
 } from "@mui/material";
 import {useDispatch} from "react-redux";
-import {fireUser, keepUser, updateFilteredUsers} from "../../../feature/auth/usersSlice";
+import {fireUser, keepUser, updateFilteredUsers} from "../../../feature/users/usersSlice";
 import UserBio from "./UserBio";
 import UserPersonalData from "./UserPersonalData";
 import UserWorkData from "./UserWorkData";
