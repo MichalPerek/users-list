@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {Container, Grid} from "@mui/material";
 import UserItem from "./UserItem/UserItem";
 import {useDispatch, useSelector} from "react-redux";
-import {updateUsers, updateFilteredUsers} from "./usersSlice";
+import {updateUsers, updateFilteredUsers} from "../../feature/auth/usersSlice";
 
 
 const UsersList = () => {

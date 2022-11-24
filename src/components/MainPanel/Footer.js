@@ -2,7 +2,7 @@ import React from 'react';
 import {Fab, Stack} from "@mui/material";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import {useDispatch} from "react-redux";
-import {updateUsers, updateFilteredUsers} from "./usersSlice";
+import {updateUsers, updateFilteredUsers} from "../../feature/auth/usersSlice";
 
 const Footer = () => {
 
