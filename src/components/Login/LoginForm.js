@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Avatar, Checkbox, FormControlLabel, Grid, Link, Paper, TextField} from "@mui/material";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {logIn} from "../../feature/auth/authSlice";
 import {Navigate} from 'react-router-dom'
+import {useFormik} from 'formik'
 
 function Copyright(props) {
     return (
@@ -22,33 +23,37 @@ function Copyright(props) {
 
 const LoginForm = () => {
 
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            keepSigned: false
+        },
+
+        onSubmit: (values) => {
+            console.log('formik ', values)
+
+            if (values.email === 'test@test.com' && values.password === 'test123') {
+                console.log('logging in')
+                dispatch(logIn(values.email))
+
+            }
+        }
+    })
+
 
     const dispatch = useDispatch()
 
-    const isAuthenticated = useSelector((state)=>state.auth.authenticated)
+    const isAuthenticated = useSelector((state) => state.auth.authenticated)
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
 
-        const user = data.get('email')
-        const password = data.get('password')
-
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
-
-        if(user === 'test@test.com' && password === 'test123') {
-            console.log('heh')
-            dispatch(logIn(data.email))
-
-        }
-    };
+    useEffect(() => {
+        console.log(formik.values)
+    }, [formik.values])
 
     return (
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-            {isAuthenticated && <Navigate to='/main' replace={true} />}
+            {isAuthenticated && <Navigate to='/main' replace={true}/>}
             <Box
                 sx={{
                     my: 8,
@@ -62,30 +67,45 @@ const LoginForm = () => {
                 <Typography component="h1" variant="h5">
                     Sign in
                 </Typography>
-                <Box component="form" noValidate onSubmit={handleSubmit} sx={{mt: 1}}>
+                <Box component="form" noValidate onSubmit={formik.handleSubmit} sx={{mt: 1}}>
                     <TextField
                         margin="normal"
                         required
                         fullWidth
                         id="email"
-                        label="Email Address"
+                        label=""
+                        placeholder='Email'
                         name="email"
-                        autoComplete="email"
+                        // autoComplete="email"
                         autoFocus
+                        value={formik.values.email}
+                        onChange={formik.handleChange}
                     />
                     <TextField
                         margin="normal"
                         required
                         fullWidth
                         name="password"
-                        label="Password"
+                        label=""
                         type="password"
                         id="password"
-                        autoComplete="current-password"
+                        placeholder='Password'
+                        // autoComplete="current-password"
+                        value={formik.values.password}
+                        onChange={formik.handleChange}
                     />
                     <FormControlLabel
-                        control={<Checkbox value="remember" color="primary"/>}
+                        control={
+                            <Checkbox
+                                color="primary"
+                                id="keepSigned"
+                                checked={formik.values.keepSigned}
+                                onChange={formik.handleChange}
+                            />
+                        }
                         label="Remember me"
+
+
                     />
                     <Button
                         type="submit"
