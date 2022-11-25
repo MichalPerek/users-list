@@ -8,13 +8,20 @@ import {Route, Routes} from 'react-router-dom'
 import MainPanel from "./pages/MainPanel";
 import Login from "./pages/Login"
 import NotFound from "./pages/NotFound";
+import RequireAuth from "./feature/auth/RequireAuth";
 
 function App() {
     return (
         <Routes>
-            <Route path ='/main' element ={<MainPanel/>}/>
+
             <Route path ='/login' element = {<Login/>} />
-            <Route path ='/*' element = {<NotFound/>} />
+
+
+            <Route  element = {<RequireAuth/>}>
+                <Route path ='/main' element ={<MainPanel/>}/>
+                <Route path ='/*' element = {<NotFound/>} />
+
+            </Route>
 
 
         </Routes>
